@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3>Hello its work</h3>
+
+    <div class="makeTX__btn">
+        <a href="/make_tx">do it</a> 
+    </div>
+    
+    <div class="tableTX">
+        {% for tx in transaction %}
+            <p><a href="/tx/{{ tx.transactionID }}">{{ tx.transactionID }}</a></p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

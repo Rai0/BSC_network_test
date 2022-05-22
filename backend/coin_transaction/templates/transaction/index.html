@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    <h3>Hello its work</h3>
+    <h1>click to make tx</h1>
 
-    <div class="makeTX__btn">
-        <a href="/make_tx">do it</a> 
+    <div class="btn__wrapper">
+        <a class="btn" href="/make_tx">money</a> 
     </div>
     
     <div class="tableTX">
         {% for tx in transaction %}
-            <p><a href="/tx/{{ tx.transactionID }}">{{ tx.transactionID }}</a></p>
+            <a href="/tx/{{ tx.transactionID }}" class="tableTX__item">{{ tx.transactionID }}</a>
         {% endfor %}
     </div>
 

@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <a href="/">back</a>
-
-    <h3>{{ id }}</h3>
-    <p>{{ description }}</p>
+    <div class="desc__wrapper">
+        <div class="btn__wrapper">
+            <div class="back__btn">
+                <a href="/" class="btn">back</a>
+            </div>
+        </div>
+    
+        <h1>{{ id }}</h1>
+        <p>{{ description }}</p>
+    </div>
 
 {% endblock %}

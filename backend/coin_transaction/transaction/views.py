@@ -14,7 +14,8 @@ def tx_page (request):
 
 def make_tx (request):
     tx_as_hax=coin.create_signed_tx (old_address=my_address, address_to=rpc.get_RPC_responce('getnewaddress'), value=1e8, wifs=[WIFs]).as_hex()
-    coin.save_tx (rpc.get_RPC_responce ('sendrawtransaction', params=tx_as_hax))
+    # coin.save_tx (rpc.get_RPC_responce ('sendrawtransaction', params=tx_as_hax))
+    coin.send_and_save_tx (tx_as_hax)
     return HttpResponseRedirect ('/')
 
 def tx_description (request, tx):

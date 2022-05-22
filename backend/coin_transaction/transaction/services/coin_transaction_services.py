@@ -2,7 +2,6 @@ import requests
 import json
 from pycoin.networks.bitcoinish import create_bitcoinish_network
 from pycoin.coins.tx_utils import create_signed_tx
-from random import randint
 from transaction.models import transactionModel
 
 class connectRPC:
@@ -22,6 +21,8 @@ class connectRPC:
         response = requests.request("POST", url, data = payload, headers=headers, auth=( rpcuser,  rpcpassword))
         json_response = json.loads(response.text)
         return (json_response [rezal_filter]) 
+
+rpc=connectRPC()
 
 class coinTransactionService:
     # class for create and sing tx
@@ -60,10 +61,14 @@ class coinTransactionService:
         spendables=self._get_spendables_from_utxo(old_address)
         return create_signed_tx(network, spendables, [(address_to, value), old_address], wifs, fee=int(value/1000))
 
-    def save_tx (self, transactionID: str) -> None:
+    def _save_tx (self, transactionID: str) -> None:
         """func for save tx to db"""
         tx=transactionModel(transactionID=transactionID)
         tx.save ()
 
+    def send_and_save_tx(self, tx_as_hax: hex) -> None:
+        txid=rpc.get_RPC_responce ('sendrawtransaction', params=tx_as_hax)
+        if len(txid):
+            self._save_tx (txid)
+
 coin=coinTransactionService ()
-rpc=connectRPC()

@@ -14,10 +14,12 @@ if os.path.exists(dotenv_path):
 # SECRET_KEY import from env variables
 SECRET_KEY = os.environ.get ('SECRET_KEY')
 
+# import wifs and address from env variables
+WIFs = os.environ.get ('WIFs')
+my_address = os.environ.get ('MY_ADDR')
+
+# debug setting
 DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
 
 # Application definition
 
@@ -28,8 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'corsheaders',
     'transaction.apps.TransactionConfig',
 ]
 
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'coin_transaction.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,17 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:8000',
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-]
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -142,7 +131,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.CoinAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

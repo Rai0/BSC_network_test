@@ -19,7 +19,8 @@ WIFs = os.environ.get ('WIFs')
 my_address = os.environ.get ('MY_ADDR')
 
 # debug setting
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -35,19 +36,6 @@ INSTALLED_APPS = [
     'transaction.apps.TransactionConfig',
 ]
 
-GRAPHENE = {
-  'SCHEMA': 'table.schema.schema',
-}
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2,
-
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ],
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,7 +119,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'collected/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 

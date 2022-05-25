@@ -1,1 +1,1 @@
-web: waitress-serve --listen=*:8000 coin_transaction.wsgi:application
+web: gunicorn coin_transaction.wsgi

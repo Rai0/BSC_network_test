@@ -1,1 +1,1 @@
-web: gunicorn coin_transaction.wsgi
+web: gunicorn app.wsgi

@@ -1,1 +1,0 @@
-web: gunicorn coin_transaction.wsgi
